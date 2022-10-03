@@ -1,63 +1,64 @@
-/*
- * main.c
- *
- *  Created on: Sep 16, 2022
- *      Author: abdoe
- */
-
 #include <stdio.h>
-#include "Card/card.h"
-#include "Terminal/terminal.h"
+#include "Application/app.h"
 #include "Server/server.h"
 
-int main()
-{
-
-ST_terminalData_t term;
-ST_cardData_t     card;
-ST_accountsDB_t  accountDB;
-ST_transaction_t trans;
-printf("card return %d\n",getCardHolderName(&card));
-printf("card return %d\n",getCardPAN(&card));
-
-printf("setMaxAmount return %d\n",setMaxAmount(&term,20000));
-printf("get trans return %d\n",getTransactionAmount(&term));
-printf("is belowmax return %d\n",isBelowMaxAmount(&term));
-
-printf("card return %d\n",getCardExpiryDate(&card));
-
-printf("transaction date return %d\n",getTransactionDate(&term));
-
-if (isCardExpired(&card,&term)!=0) {
-	printf("expired card \n");
-}
-else {
-	printf("valid card \n");
-}
+#include "std_types.h"
 
 
+int main(void){
 
-if (isBelowMaxAmount(&term)!=0) {
-	printf("You have exceeded the Maximum Transaction Amount!!");
-}
-else {
-	printf("transaction accepted \n");
-}
+	//for flushing the buffer if you want(Problem in eclipse)
+/*	setvbuf(stdout, NULL, _IONBF, 0);
+	setvbuf(stderr, NULL, _IONBF, 0); */
+#if (TESTING_MODE ==0)
+	uint8_t choice;
+	while(1){
+		printf("What do you want to do?\n");
+		printf("\n");
+		printf("1- New Transaction\n");
+		printf("2- Show previous Transactions\n");
+		printf("3- Exit (Saved data will be erased!!)\n");
 
+		scanf("%d",&choice);
+		getchar();
 
-if (isValidCardPAN(&card)!=0) {
-	printf("invalid card pan \n");
-}
-else {
-	printf("valid card pan \n");
-}
+		switch(choice){
+		case 1:
+			appStart();
+			break;
+		case 2:
+			listSavedTransactions();
+			break;
+		case 3:
+			printf("Shutting Down...\n");
+			printf("GoodBye :)\n");
+			return 0;
+			break;
+		}
+	}
+#endif
 
-if(recieveTransactionData(&trans)!=0){
-	printf("Transaction Not received!!\n");
-}
-else{
-	printf("##Transaction received###\n");
-}
-
-return 0;
+#if (TESTING_MODE ==1)
+	//-------------------------------card test--------------------------------------------//
+/*	getCardHolderNameTest();
+	getCardExpiryDateTest();
+	getCardPANTest();
+*/
+	//-------------------------------terminal test--------------------------------------------//
+/*	getTransactionDateTest();
+	isCardExpriedTest();
+	getTransactionAmountTest();
+	isBelowMaxAmountTest();
+	setMaxAmountTest();
+	isValidCardPANTest();
+*/
+	//-------------------------------server test--------------------------------------------//
+/*	recieveTransactionDataTest();
+	isValidAccountTest();
+	isBlockedAccountTest();
+	isAmountAvailableTest();
+	saveTransactionTest();
+*/
+	return 0;
+#endif
 }
