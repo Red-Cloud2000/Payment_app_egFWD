@@ -4,7 +4,7 @@
  *
  * File Name: std_types.h
  *
- * Description: types for AVR
+ * Description: types for C
  *
  * Author: Abdelrahman Hesham
  *
