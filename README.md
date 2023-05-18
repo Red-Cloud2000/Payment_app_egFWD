@@ -1,2 +1,4 @@
 # Payment_app_egFWD
 Payment systems are now available everywhere and everyone interacts with these systems every day.  <br>There are different types of transactions you can make, SALE, REFUND, Pre-Authorization, and VOID. <br> <br>SALE: means to buy something and its price will be deducted from your bank account. <br>REFUND: this means that you will return something and wants your money back to your bank account. <br>Pre-Authorization: means holding an amount of money from your account, e.g Hotel reservation. <br>VOID: this means canceling the transaction, e.g if the seller entered the wrong amount.  <br> <br>You are required to implement the SALE transaction only by simulating the card, terminal(ATM), and the server.
+
+<img width="626" alt="Screenshot 2022-12-20 203731" src="https://github.com/Red-Cloud2000/Payment_app_egFWD/assets/61296209/5350ae45-63ae-44da-8bd9-9616742f9136">
